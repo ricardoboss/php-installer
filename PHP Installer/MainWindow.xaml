@@ -1,0 +1,101 @@
+﻿<Window x:Class="PHP_Installer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PHP_Installer"
+        xmlns:converters="clr-namespace:PHP_Installer.Converters"
+
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance {x:Type local:MainWindow}}"
+
+        Title="PHP Installer for Windows"
+        Height="450" Width="800"
+        MinHeight="450" MinWidth="700">
+    <Window.Resources>
+        <converters:ObjectToFrameworkElementConverter x:Key="EntryToListBoxItem" />
+        <converters:InvertBooleanConverter x:Key="InvertBoolean" />
+        <converters:NotNullToBooleanConverter x:Key="NotNull" />
+    </Window.Resources>
+    
+    <!-- MAYBE: find a better way to block inputs while installing -->
+    <Grid IsEnabled="{Binding IsInstalling, Converter={StaticResource InvertBoolean}}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition MinWidth="400" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="0" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">Installation path:</Label>
+            <TextBox Grid.Row="1" Grid.Column="0" x:Name="TextBoxInstallationPath" Margin="0,0,10,0" IsReadOnly="True" />
+            <Button Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Click="ButtonBrowseInstallPath_Click" IsEnabled="{Binding IsInstalling, Converter={StaticResource InvertBoolean}}">Browse</Button>
+            
+            <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                <Run>The final installation folder will be:</Run><LineBreak />
+                <Run x:Name="InfoInstallationPath" />
+            </TextBlock>
+
+            <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom" FontSize="12" Margin="0,0,0,10">
+                <Hyperlink Click="HyperlinkAbout_Click">About PHP Installer...</Hyperlink>
+            </TextBlock>
+
+            <!-- TODO: disabled install button when IsInstalling == true -->
+            <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"
+                    IsEnabled="{Binding SelectedDownloadEntry, Converter={StaticResource NotNull}}" Click="ButtonInstall_Click" Margin="0,0,0,10">Install</Button>
+
+            <ProgressBar Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Value="{Binding DownloadProgress, UpdateSourceTrigger=PropertyChanged}" Height="20px" />
+        </Grid>
+
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Style="{DynamicResource MaterialDesignTitleTextBlock}" Text="Available versions:" />
+            <ScrollViewer Grid.Row="1">
+                <ItemsControl x:Name="ListBoxDownloadEntries">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <ContentPresenter Content="{Binding Converter={StaticResource EntryToListBoxItem}}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Grid>
+        
+        <Button Grid.Row="0" 
+                Grid.Column="1" 
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Margin="0,0,25,25"
+
+                Click="ButtonRefresh_Click"
+                IsEnabled="{Binding IsUpdating, Converter={StaticResource InvertBoolean}}"
+
+                Effect="{DynamicResource MaterialDesignShadowDepth2}">
+            <Viewbox Child="{StaticResource IconReload}" />
+        </Button>
+    </Grid>
+</Window>
+
