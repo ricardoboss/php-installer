@@ -50,7 +50,7 @@
             <TextBox Grid.Row="1" Grid.Column="0" x:Name="TextBoxInstallationPath" Margin="0,0,10,0" IsReadOnly="True" />
             <Button Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Click="ButtonBrowseInstallPath_Click" IsEnabled="{Binding IsInstalling, Converter={StaticResource InvertBoolean}}">Browse</Button>
             
-            <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+            <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Padding="0,10,0,0">
                 <Run>The final installation folder will be:</Run><LineBreak />
                 <Run x:Name="InfoInstallationPath" />
             </TextBlock>
