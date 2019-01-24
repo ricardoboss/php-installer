@@ -123,6 +123,8 @@ namespace PHP_Installer
         {
             InitializeComponent();
 
+            DataContext = this;
+
             Application.Current.Exit += (sender, args) =>
             {
                 // when the application exists, we want to store the used installation path for the next time
