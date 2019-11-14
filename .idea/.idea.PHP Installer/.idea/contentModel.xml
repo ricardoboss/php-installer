@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\ricar\.Rider2019.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\ricar\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_PHP Installer.1873744922.00" t="ExcludeRecursive" />
+    <e p="S:\repos\ricardoboss\php-installer" t="IncludeFlat">
+      <e p=".git\info\exclude" t="IncludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="PHP Installer" t="IncludeRecursive">
+        <e p="AboutBox.cs" t="Include" />
+        <e p="AboutBox.Designer.cs" t="Include" />
+        <e p="AboutBox.resx" t="Include" />
+        <e p="App.config" t="Include" />
+        <e p="App.xaml" t="Include" />
+        <e p="App.xaml.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Converters" t="Include">
+          <e p="InvertBooleanConverter.cs" t="Include" />
+          <e p="NotNullToBooleanConverter.cs" t="Include" />
+          <e p="ObjectToFrameworkElementConverter.cs" t="Include" />
+        </e>
+        <e p="DefaultIniDialog.cs" t="Include" />
+        <e p="DefaultIniDialog.Designer.cs" t="Include" />
+        <e p="DownloadEntry.cs" t="Include" />
+        <e p="Icons.xaml" t="Include" />
+        <e p="MainWindow.xaml" t="Include" />
+        <e p="MainWindow.xaml.cs" t="Include" />
+        <e p="nlog.config" t="Include" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
+        <e p="PHP Installer.csproj" t="IncludeRecursive" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+          <e p="Settings.Designer.cs" t="Include" />
+          <e p="Settings.settings" t="Include" />
+        </e>
+      </e>
+      <e p="PHP Installer.sln" t="IncludeFlat" />
+    </e>
+  </component>
+</project>
