@@ -11,6 +11,7 @@ using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Threading;
 using NLog;
+using NLog.Targets;
 using MessageBox = System.Windows.MessageBox;
 
 namespace PHP_Installer
@@ -177,6 +178,14 @@ namespace PHP_Installer
 
             // update the path variable
             Environment.SetEnvironmentVariable("PATH", newPath, EnvironmentVariableTarget.Machine);
+        }
+
+        public static string GetLogFileName()
+        {
+            var fileTarget = LogManager.Configuration.FindTargetByName<FileTarget>("file");
+            var info = new LogEventInfo { TimeStamp = DateTime.Now };
+
+            return fileTarget.FileName.Render(info);
         }
     }
 }
